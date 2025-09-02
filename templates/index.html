@@ -3,17 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de INSS</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}">
+    <title>Calculadora de INSS 2025</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- <link rel="stylesheet" href="/static/style.css"> -->
 </head>
 <body>
     <div class="container">
-        <h1>Calculadora de INSS</h1>
-        <input type="number" id="salario" placeholder="Digite seu salário">
-        <input type="text" id="vinculacao" placeholder="Digite sua vinculação profissional">
-        <button onclick="calcular()">Calcular</button>
-        <p id="resultado"></p>
+        <h1>Calculadora de INSS 2025</h1>
+        <label for="salario">Informe seu salário:</label>
+        <input type="number" id="salario" name="salario" step="0.01" required>
+
+        <label for="vinculacao">Informe o tipo de vinculação profissional:</label>
+        <select id="vinculacao" required>
+            <option value="clt">CLT</option>
+            <option value="autônomo">Autônomo</option>
+            <option value="empresário">Empresário</option>
+        </select>
+
+        <button onclick="calcularINSS()">Calcular</button>
+
+        <div id="resultado"></div>
     </div>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        async function calcularINSS() {
+            const salario = document.getElementById("salario").value;
+            const vinculacao = document.getElementById("vinculacao").value;
+
+            const response = await fetch("/calcular", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json" 
+                },
+                body: JSON.stringify({ salario, vinculacao })
+            });
+
+            const data = await response.json();
+            const resultado = document.getElementById("resultado");
+
+            if (response.ok) {
+                resultado.innerHTML = `<p>Você pagará <strong>R$${data.inss}</strong> de INSS.</p>`;
+            } else {
+                resultado.innerHTML = `<p>Você pagará <strong>R$${data.inss}</strong> de INSS.</p>`;
+            }
+        }
+    </script>
 </body>
 </html>
