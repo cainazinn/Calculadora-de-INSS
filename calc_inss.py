@@ -18,30 +18,47 @@ app.config["SECRET_KEY"] = "SENHA"
 # vinculação = input("Informe como você exerce sua atividade profissional:")
 
 def calc_inss(salário, vinculação):
+
     if vinculação == "clt": #Se o cidadão trabalhar de carteira assinada, seu desconto INSS será calculado da seguinte forma:
+
         if salário <= 1518.00:
             inss = salário * 0.075
+
         elif salário > 1518.00 and salário <= 2793.88:
             inss = salário * 0.09 - 22.77
+
         elif salário > 2793.88 and salário <= 4190.83:
-            inss = salário * 0.12 - 106.59  
+            inss = salário * 0.12 - 106.59
+
         elif salário > 4190.83 and salário <= 8157.41:
             inss = salário * 0.14 - 190.40
+
         elif salário > 8157.41:  
-            inss = salário * 0.14 - 190.40 #Mesmo que o salário do cidadão passe de R$8.157,41, seu desconto INSS já atingiu o limite.
+            inss = salário * 0.14 - 190.40 #Mesmo que o salário do cidadão seja maior que R$8.157,41, o teto de contribuição INSS já foi atingido.
         
+
     elif vinculação == "autônomo": #Se o cidadão for autônomo, seu desconto INSS será calculado da seguinte forma: 
+
         if salário <= 8157.41:
             inss = salário * 0.20
+
         else:
-            inss = salário * 0.14 #Mesmo que o salário do cidadão passe de R$8.157,41, seu desconto INSS já atingiu o limite.
+            inss = 1631.48 #Mesmo que o salário do cidadão seja maior que R$8.157,41, o teto de contribuição INSS já foi atingido.
         
+
     elif vinculação == "empresário": #Se o cidadão for empresário, seu desconto INSS será calculado da seguinte forma:
+
         if salário <= 8157.41:
             inss = salário * 0.11
-        else:
-            inss = salário * 0.14 #Mesmo que o salário do cidadão passe de R$8.157,41, seu desconto INSS já atingiu o limite.
 
+        elif salário > 8157.41:
+
+            if inss > 1631.48:
+                inss = 1631.48 #Mesmo que o salário do cidadão seja maior que R$8.157,41, o teto de contribuição INSS já foi atingido.
+
+            else:
+                inss = salário * 0.11 
+                
     return round(inss, 2)
 
 # resultado = calc_inss(salário)
