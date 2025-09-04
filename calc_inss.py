@@ -72,11 +72,14 @@ def calc_inss(salário, vinculação):
 # resultado = calc_inss(salário)
 # print(f"Você pagará R${resultado} de INSS!")
 
+
 @app.route('/')
+
 def index():
     return render_template("index.html")
 
 @app.route('/calcular', methods=['POST'])
+
 def calcular():
     data = request.get_json()
     salário = float(data['salario'])
