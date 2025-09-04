@@ -49,6 +49,7 @@ def calc_inss(salário, vinculação):
             inss = salário * 0.20
 
         else:
+
             inss = 1631.48 #Mesmo que o salário do cidadão seja maior que R$8.157,41, o teto de contribuição INSS já foi atingido.
         
 
@@ -59,6 +60,7 @@ def calc_inss(salário, vinculação):
             inss = salário * 0.11
 
         elif salário > 14831.64:
+            aliquota = 11
             inss = 1631.48
 
             # if inss > 1631.48:
@@ -72,14 +74,11 @@ def calc_inss(salário, vinculação):
 # resultado = calc_inss(salário)
 # print(f"Você pagará R${resultado} de INSS!")
 
-
 @app.route('/')
-
 def index():
     return render_template("index.html")
 
 @app.route('/calcular', methods=['POST'])
-
 def calcular():
     data = request.get_json()
     salário = float(data['salario'])
