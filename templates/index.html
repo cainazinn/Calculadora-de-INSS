@@ -11,7 +11,7 @@
     <div class="container">
         <h1>Calculadora de INSS 2025</h1>
         <label for="salario">Informe seu salário:</label>
-        <input type="number" id="salario" name="salario" step="0.01" required>
+        <input type="number" id="salario" name="salario" step="0.01" required><br><br>
 
         <label for="vinculacao">Informe o tipo de vinculação profissional:</label>
         <select id="vinculacao" required>
@@ -26,6 +26,7 @@
     </div>
     <script>
         async function calcularINSS() {
+
             const salario = document.getElementById("salario").value;
             const vinculacao = document.getElementById("vinculacao").value;
 
@@ -41,10 +42,11 @@
             const resultado = document.getElementById("resultado");
 
             if (response.ok) {
-                resultado.innerHTML = `<p>Você pagará <strong>R$${data.inss}</strong> de INSS.</p>`;
+                resultado.innerHTML = `<p>Você pagará <strong>R$${data.inss}</strong> de INSS.<br>A aliquota aplicada foi de <strong>${data.aliquota}%.</strong></p>`;
             } else {
-                resultado.innerHTML = `<p>Você pagará <strong>R$${data.inss}</strong> de INSS.</p>`;
+                resultado.innerHTML = `<p>Você pagará <strong>R$${data.inss}</strong> de INSS. <br>A aliquota aplicada foi de <strong>${data.aliquota}%.</strong></p>`;
             }
+            
         }
     </script>
 </body>
