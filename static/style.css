@@ -24,13 +24,13 @@ select{
     font-size: 16px;
 }
 
-button{
+/* button{
     width: 250px;
     margin-top: 40px;
     padding: 10px;
     font-size: 16px;
     transition: 0.4s;
-}
+} */
 
 input{
     width: 355px;
@@ -47,6 +47,9 @@ label{
 }
 
 button{
+    width: 250px;
+    padding: 10px;
+    font-size: 16px;
     border-radius: 10px;
     background-color: #41474d;
     color: white;
@@ -56,6 +59,7 @@ button{
     justify-content: center;
     margin: auto;
     margin-top: 20px;
+    transition: 0.4s
 }
 
 button:hover{
