@@ -1,6 +1,6 @@
 body{
     font-family: Arial, sans-serif;
-    background: linear-gradient(90deg,rgb(8, 8, 72), rgb(26, 26, 192), rgb(30, 105, 254),rgb(61, 147, 232));
+    background: linear-gradient(90deg,rgb(8, 8, 72), rgb(21, 50, 129), rgb(22, 85, 210),rgb(61, 147, 232));
     padding: 150px;
     
 
@@ -48,7 +48,7 @@ label{
 
 button{
     border-radius: 10px;
-    background-color: #007bff;
+    background-color: #41474d;
     color: white;
     border: none;
     cursor: pointer;
@@ -59,7 +59,7 @@ button{
 }
 
 button:hover{
-    background-color: #41474d;
+    background-color: #1464ba;
 }
 
 #resultado{
