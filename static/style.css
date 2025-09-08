@@ -1,6 +1,6 @@
 body{
     font-family: Arial, sans-serif;
-    background: linear-gradient(rgb(8, 8, 72), rgb(26, 26, 192), rgb(30, 105, 254),rgb(61, 147, 232));
+    background: linear-gradient(90deg,rgb(8, 8, 72), rgb(26, 26, 192), rgb(30, 105, 254),rgb(61, 147, 232));
     padding: 150px;
     
 
@@ -15,22 +15,51 @@ body{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.663);
 }
 
-input, select, button{
-    width: 100%;
+select{
+    width: 380px;
+    border-radius: 10px;
+    border-color: rgba(0, 0, 0, 0.449) ;
     margin-top: 10px;
     padding: 10px;
     font-size: 16px;
 }
 
 button{
+    width: 250px;
+    margin-top: 40px;
+    padding: 10px;
+    font-size: 16px;
+    transition: 0.4s;
+}
+
+input{
+    width: 355px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border-color: rgba(0, 0, 0, 0.449);
+}
+
+label{
+    display: flex;
+    align-items: center;
+}
+
+button{
+    border-radius: 10px;
     background-color: #007bff;
     color: white;
     border: none;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 20px;
 }
 
 button:hover{
-    background-color: #0056b3;
+    background-color: #41474d;
 }
 
 #resultado{
