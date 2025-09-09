@@ -49,7 +49,7 @@ def calc_inss(salário, vinculação):
             inss = salário * 0.20
 
         else:
-
+            aliquota = 20
             inss = 1631.48 #Mesmo que o salário do cidadão seja maior que R$8.157,41, o teto de contribuição INSS já foi atingido.
         
 
