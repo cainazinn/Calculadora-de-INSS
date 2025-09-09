@@ -8,7 +8,7 @@ body{
 
 .container{
     background-color: white;
-    padding: 30px;
+    padding: 40px;
     max-width: 400px;
     margin: auto;
     border-radius: 8px;
@@ -16,13 +16,21 @@ body{
 }
 
 select{
-    width: 378px;
+    width: 380px;
     border-radius: 10px;
     border-color: rgba(0, 0, 0, 0.449) ;
     margin-top: 10px;
     padding: 10px;
     font-size: 16px;
 }
+
+/* button{
+    width: 250px;
+    margin-top: 40px;
+    padding: 10px;
+    font-size: 16px;
+    transition: 0.4s;
+} */
 
 input{
     width: 355px;
@@ -59,7 +67,7 @@ button:hover{
 }
 
 #resultado{
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-top: 20px;
     font-size: 18px;
 }
