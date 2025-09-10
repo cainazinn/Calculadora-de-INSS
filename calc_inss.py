@@ -19,6 +19,9 @@ app.config["SECRET_KEY"] = "SENHA"
 
 def calc_inss(salário, vinculação):
 
+    #verificado.
+    
+
     if vinculação == "clt": #Se o cidadão trabalhar de carteira assinada, seu desconto INSS será calculado da seguinte forma:
 
         if salário <= 1518.00:
@@ -42,6 +45,8 @@ def calc_inss(salário, vinculação):
             inss = 951.62 #Mesmo que o salário do cidadão seja maior que R$8.157,41, o teto de contribuição INSS já foi atingido.
         
 
+#Contribuinte individual:
+
     elif vinculação == "autônomo plano comum": #Se o cidadão for autônomo, seu desconto INSS será calculado da seguinte forma: 
 
         if salário <= 8157.41:
@@ -55,12 +60,15 @@ def calc_inss(salário, vinculação):
 
     elif vinculação == "autônomo plano simplificado":
 
-        aliquota = 11
-        salário = 1518.00
-        inss = salário * 0.11
+        if salário <= 1518.00:
+            aliquota = 11
+            inss = salário * 0.11
 
+        else:
+            aliquota = 11
+            inss = 166.98
 
-    elif vinculação == "autônomo cooperado": #verificado
+    elif vinculação == "autônomo cooperado": #verificar
         
         if salário <= 8157.41:
             aliquota = 20
