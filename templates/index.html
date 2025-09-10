@@ -14,7 +14,7 @@
             <h1>Calculadora de INSS 2025</h1>
             
             <label for="salario">Informe o salário:</label>
-            <input type="number" id="salario" name="salario" step="0.01" required><br><br>
+            <input type="number" id="salario" name="salario" step="0.01" min="0" required><br><br>
     
             <label for="vinculacao">Informe o tipo de vinculação profissional:</label>
             <select id="vinculacao" required>
@@ -33,9 +33,9 @@
     <script>
         async function calcularINSS() {
 
-            const salario = document.getElementById("salario").value;
+            const salario = parseFloat(document.getElementById("salario").value);
             const vinculacao = document.getElementById("vinculacao").value;
-
+            
             const response = await fetch("/calcular", {
                 method: "POST",
                 headers: {
@@ -44,13 +44,29 @@
                 body: JSON.stringify({ salario, vinculacao })
             });
 
-            const data = await response.json();
-            const resultado = document.getElementById("resultado");
-
+            const data = await response.json()
+            const resultado = document.getElementById("resultado")
+            const liquido = salario - data.inss
             if (response.ok) {
-                resultado.innerHTML = `<p>Você pagará <strong>R$${data.inss}</strong> de INSS.<br>A aliquota aplicada foi de <strong>${data.aliquota}%.</strong></p>`;
+                resultado.innerHTML = `
+                    <table>
+                        <tr>
+                            <th>Salário Bruto</th>
+                            <th>Alíquota</th>
+                            <th>Desconto INSS</th>
+                            <th>Salário Líquido</th>
+                            <th>Vinculação</th>
+                        </tr>
+                        <tr>
+                            <td>R$ ${salario.toFixed(2)}</td>
+                            <td>${data.aliquota}%</td>
+                            <td>${data.inss.toFixed(2)}</td>
+                            <td>${liquido.toFixed(2)}</td>
+                            <td>${vinculacao}</td>
+
+                        </tr>`
             } else {
-                resultado.innerHTML = `<p>Você pagará <strong>R$${data.inss}</strong> de INSS. <br>A aliquota aplicada foi de <strong>${data.aliquota}%.</strong></p>`;
+                resultado.innerHTML = `<p style="color:red;">${data.error}</p>`
             }
             
         }
