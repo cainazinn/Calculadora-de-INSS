@@ -7,12 +7,12 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "SENHA"
 
-# print("-----------------------------------------------------")
-# print("| Seja bem vindo(a) ao simulador de cálculo de INSS |")
-# print("| Aqui você saberá quanto terá que pagar de INSS    |")
-# print("| de acordo com sua vinculação profissional!        | ")
-# print("|                                                   |")
-# print("-----------------------------------------------------\n")
+# ("-----------------------------------------------------")
+# ("| Seja bem vindo(a) ao simulador de cálculo de INSS |")
+# ("| Aqui você saberá quanto terá que pagar de INSS    |")
+# ("| de acordo com sua vinculação profissional!        | ")
+# ("|                                                   |")
+# ("-----------------------------------------------------\n")
 
 # salário = float(input("Informe seu salário:"))
 # vinculação = input("Informe como você exerce sua atividade profissional:")
@@ -22,7 +22,7 @@ def calc_inss(salário, vinculação):
     #verificado.
     
 
-    if vinculação == "clt": #Se o cidadão trabalhar de carteira assinada, seu desconto INSS será calculado da seguinte forma:
+    if vinculação == "clt": 
 
         if salário <= 1518.00:
             aliquota = 7.5
