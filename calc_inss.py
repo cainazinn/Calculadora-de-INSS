@@ -42,12 +42,12 @@ def calc_inss(salário, vinculação):
     
         elif salário > 8157.41:
             aliquota = 11.66  
-            inss = 951.62 #Mesmo que o salário do cidadão seja maior que R$8.157,41, o teto de contribuição INSS já foi atingido.
+            inss = 951.62 
         
 
 #Contribuinte individual:
 
-    elif vinculação == "autônomo plano comum": #Se o cidadão for autônomo, seu desconto INSS será calculado da seguinte forma: 
+    elif vinculação == "autônomo plano comum":  
 
         if salário <= 8157.41:
             aliquota = 20
@@ -55,7 +55,7 @@ def calc_inss(salário, vinculação):
 
         else:
             aliquota = 20 
-            inss = 1631.48 #Mesmo que o salário do cidadão seja maior que R$8.157,41, o teto de contribuição INSS já foi atingido.
+            inss = 1631.48 
     
 
     elif vinculação == "autônomo plano simplificado":
@@ -84,7 +84,7 @@ def calc_inss(salário, vinculação):
         salário = 1518.00
         inss = salário * 0.11
 
-    elif vinculação == "empresário": #Se o cidadão for empresário, seu desconto INSS será calculado da seguinte forma:
+    elif vinculação == "empresário": 
 
         if salário <= 14831.64:
             aliquota = 11
@@ -94,11 +94,6 @@ def calc_inss(salário, vinculação):
             aliquota = 11
             inss = 1631.48
 
-            # if inss > 1631.48:
-            #     inss = 1631.48 #Mesmo que o salário do cidadão seja maior que R$8.157,41, o teto de contribuição INSS já foi atingido.
-
-            # else:
-            #     inss = salário * 0.11 
                 
     return round(inss, 2), aliquota
 
