@@ -17,40 +17,62 @@
             <label for="salario">Informe o salário:</label>
             <input type="number" id="salario" name="salario" step="0.01" min="0" required><br><br>
     
-            <label for="vinculacao">Informe o tipo de vinculação profissional:</label>
-            <select id="vinculacao" required>
-                <option value="clt">Empregado CLT</option>
-                <option value="autônomo plano comum">Autônomo (plano comum)</option>
-                <option value="autônomo plano simplificado">Autônomo (plano simplificado)</option>
-                <option value="autônomo cooperado">Autônomo cooperado</option>
+            <label for="segurado">Informe o tipo de segurado:</label>
+            <select id="segurado" onchange="selecionar()">
+                <option value="empregado">Empregado</option>
+                <option value="empregado doméstico">Empregado doméstico</option>
+                <option value="trabalhador avulso">Trabalhador avulso</option>
+                <option value="contribuinte individual">Contribuinte individual</option>
                 <option value="empresário">Empresário</option>
             </select>
-    
+
+            <label for="modalidade" id="label">Informe a modalidade: </label>
+            <select id="modalidade">
+                <option value="">Sem modalidade</option>
+            </select>
+
             <button onclick="calcularINSS()">Calcular</button>
         </div>
 
         <div id="resultado"></div>
     </div>
     <script>
+        function selecionar(){
+
+            let segurado = document.getElementById("segurado").value
+            let modalidade = document.getElementById("modalidade")
+
+            if (segurado == "contribuinte individual"){
+                modalidade.innerHTML = `<option value="plano simplificado">Plano simplificado</option> 
+                                        <option value="plano comum">Plano comum</option>`
+
+            } else{
+                modalidade.innerHTML = `<option value="">Sem modalidade</option>`
+            }
+        }
+
         async function calcularINSS() {
 
-            const salario = parseFloat(document.getElementById("salario").value);
-            const vinculacao = document.getElementById("vinculacao").value;
-            
+            const salario = parseFloat(document.getElementById("salario").value)
+            const segurado = document.getElementById("segurado").value
+            const modalidade = document.getElementById("modalidade").value
+
             const response = await fetch("/calcular", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json" 
                 },
-                body: JSON.stringify({ salario, vinculacao })
+                body: JSON.stringify({ salario, segurado, modalidade})
             });
-
+            
             const data = await response.json()
             const resultado = document.getElementById("resultado")
             const liquido = salario - data.inss
+            
             if (response.ok) {
-                resultado.innerHTML = `
-                    <table>
+                resultado.innerHTML = 
+
+                `<table>
                         <tr>
                             <th>Salário Bruto</th>
                             <th>Alíquota aplicada</th>
@@ -64,6 +86,7 @@
                             <td>${data.inss.toFixed(2)}</td>
                             <td>R$ ${liquido.toFixed(2)}</td>
                         </tr>`
+
             } else {
                 resultado.innerHTML = `<p style="color:red;">${data.error}</p>`
             }
