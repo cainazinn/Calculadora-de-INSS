@@ -6,6 +6,7 @@
     <title>Calculadora de INSS 2025</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <!-- <link rel="stylesheet" href="/static/style.css"> -->
+    
 </head>
 <body>
     <div class="container">
@@ -52,18 +53,16 @@
                     <table>
                         <tr>
                             <th>Salário Bruto</th>
-                            <th>Alíquota</th>
+                            <th>Alíquota aplicada</th>
                             <th>Desconto INSS</th>
                             <th>Salário Líquido</th>
-                            <th>Vinculação</th>
+                            
                         </tr>
                         <tr>
                             <td>R$ ${salario.toFixed(2)}</td>
                             <td>${data.aliquota}%</td>
                             <td>${data.inss.toFixed(2)}</td>
-                            <td>${liquido.toFixed(2)}</td>
-                            <td>${vinculacao}</td>
-
+                            <td>R$ ${liquido.toFixed(2)}</td>
                         </tr>`
             } else {
                 resultado.innerHTML = `<p style="color:red;">${data.error}</p>`
