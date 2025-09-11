@@ -17,12 +17,12 @@ app.config["SECRET_KEY"] = "SENHA"
 # salário = float(input("Informe seu salário:"))
 # vinculação = input("Informe como você exerce sua atividade profissional:")
 
-def calc_inss(salário, vinculação):
+def calc_inss(salário, tipo_segurado, modalidade):
 
     #verificado.
     
 
-    if vinculação == "clt": 
+    if tipo_segurado in ["empregado", "empregado doméstico", "trabalhador avulso"]:
 
         if salário <= 1518.00:
             aliquota = 7.5
@@ -47,44 +47,32 @@ def calc_inss(salário, vinculação):
 
 #Contribuinte individual:
 
-    elif vinculação == "autônomo plano comum":  
+    
+    elif tipo_segurado == "contribuinte individual":  
+         
+        if modalidade == "plano simplificado":
 
-        if salário <= 8157.41:
-            aliquota = 20
-            inss = salário * 0.20
+            if salário <= 1518.00:
+                aliquota = 11
+                inss = salário * 0.11
+            else:
+                aliquota = 11 
+                inss = 166.98 
 
-        else:
-            aliquota = 20 
-            inss = 1631.48 
+        elif modalidade == "plano comum":
+
+            if salário <= 8157.41:
+                aliquota = 20
+                inss = salário * 0.20
+
+            else:
+                aliquota = 20
+                inss = 1631.48
+
+
     
 
-    elif vinculação == "autônomo plano simplificado":
-
-        if salário <= 1518.00:
-            aliquota = 11
-            inss = salário * 0.11
-
-        else:
-            aliquota = 11
-            inss = 166.98
-
-    elif vinculação == "autônomo cooperado": #verificar
-        
-        if salário <= 8157.41:
-            aliquota = 20
-            inss = salário * 0.20
-
-        else:
-            aliquota = 20
-            inss = 1631.48
-
-    elif vinculação == "autônomo prestador de serviços":
-        
-        aliquota = 11
-        salário = 1518.00
-        inss = salário * 0.11
-
-    elif vinculação == "empresário": 
+    elif tipo_segurado == "empresário": 
 
         if salário <= 14831.64:
             aliquota = 11
@@ -108,14 +96,16 @@ def index():
 def calcular():
     data = request.get_json()
     salário = float(data['salario'])
-    vinculação = data['vinculacao'].lower()
-    resultado, aliquota = calc_inss(salário, vinculação)
+    tipo_segurado = data['segurado'].lower()
+    modalidade = data['modalidade'].lower()
+    
+    resultado, aliquota = calc_inss(salário, tipo_segurado, modalidade)
 
 
     if resultado is not None:
         return jsonify({"inss": resultado, "aliquota": aliquota})
     else:
-        return jsonify({"error": "Tipo de vinculação inválido!"}), 400
+        return jsonify({"error": "Tipo de segurado inválido!"}), 400
     
 if __name__ == "__main__":
     app.run(debug=True)
