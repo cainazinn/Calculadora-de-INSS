@@ -58,23 +58,27 @@ def calc_inss(salário, tipo_segurado, modalidade):
 
         elif modalidade == "plano normal":
 
-            if salário <= 8157.41:
+            if salário >= 1518.00 and salário <= 8157.41:
                 aliquota = 20
                 inss = salário * 0.20
 
-            else:
+            elif salário > 8157.41:
                 aliquota = 20
                 inss = 1631.48
+            
+            else:
+                aliquota = 20
+                inss = 303.60
         
         elif modalidade == "baixa renda":
 
-            if salário <= 8157.41:
+            if salário >= 1518.00 and salário <= 8157.41:
                 aliquota = 5
                 inss = salário * 0.05
             
             else:
                 aliquota = 5
-                inss = 407.87
+                inss = 75.90
 
 
     
@@ -91,10 +95,14 @@ def calc_inss(salário, tipo_segurado, modalidade):
 
     elif tipo_segurado == "segurado especial":
 
-        if salário >= 1518.00:
+        if salário >= 1518.00 and salário <= 8157.41:
             aliquota = 20
             inss = salário * 0.20
         
+        elif salário > 8157.41:
+            aliquota = 20
+            inss = 1631.48
+            
         else:
             aliquota = 20
             inss = 303.60
