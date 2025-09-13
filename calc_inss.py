@@ -24,7 +24,7 @@ def calc_inss(salário, tipo_segurado, modalidade):
 
     if tipo_segurado in ["empregado", "empregado doméstico", "trabalhador avulso"]:
 
-        if salário <= 1518.00:
+        if salário == 1518.00:
             aliquota = 7.5
             inss = salário * 0.075
 
@@ -48,18 +48,15 @@ def calc_inss(salário, tipo_segurado, modalidade):
 #Contribuinte individual:
 
     
-    elif tipo_segurado == "contribuinte individual":  
+    elif tipo_segurado in ["contribuinte individual", "segurado facultativo"]:  
          
         if modalidade == "plano simplificado":
+                
+            salário = 1518.00
+            aliquota = 11
+            inss = salário * 0.11
 
-            if salário <= 1518.00:
-                aliquota = 11
-                inss = salário * 0.11
-            else:
-                aliquota = 11 
-                inss = 166.98 
-
-        elif modalidade == "plano comum":
+        elif modalidade == "plano normal":
 
             if salário <= 8157.41:
                 aliquota = 20
@@ -68,6 +65,16 @@ def calc_inss(salário, tipo_segurado, modalidade):
             else:
                 aliquota = 20
                 inss = 1631.48
+        
+        elif modalidade == "baixa renda":
+
+            if salário <= 8157.41:
+                aliquota = 5
+                inss = salário * 0.05
+            
+            else:
+                aliquota = 5
+                inss = 407.87
 
 
     
@@ -82,6 +89,15 @@ def calc_inss(salário, tipo_segurado, modalidade):
             aliquota = 11
             inss = 1631.48
 
+    elif tipo_segurado == "segurado especial":
+
+        if salário >= 1518.00:
+            aliquota = 20
+            inss = salário * 0.20
+        
+        else:
+            aliquota = 20
+            inss = 303.60
                 
     return round(inss, 2), aliquota
 
