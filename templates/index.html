@@ -26,6 +26,7 @@
                 <option value="segurado facultativo">Segurado facultativo</option>
                 <option value="segurado especial">Segurado especial</option>
                 <option value="empresário">Empresário</option>
+                <option value="mei">MEI</option>
             </select>
 
             <label for="modalidade" id="label">Modalidade:</label>
@@ -54,7 +55,13 @@
                     `<option value="plano simplificado">Plano simplificado</option> 
                      <option value="plano normal">Plano normal</option>
                      <option value="baixa renda">Baixa renda</option>`
-            } else {
+
+            } else if (segurado == "segurado especial"){
+                modalidade.innerHTML = 
+                    `<option value="obrigatório">Contribuição obrigatória</option>
+                     <option value="facultativo">Contribuição facultativa</option>`
+            }
+             else {
                 modalidade.innerHTML = `<option value="">Sem modalidade</option>`
                 
             }
