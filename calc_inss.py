@@ -92,8 +92,8 @@ def calc_inss(salário, tipo_segurado, modalidade):
         elif modalidade == "complementar":
 
             salário = 1518.00
-            aliquota = 20
-            inss = salário * 0.20
+            aliquota = 15
+            inss = salário * 0.15
 
 
     elif tipo_segurado == "empresário": 
