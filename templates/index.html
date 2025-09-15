@@ -90,25 +90,78 @@
             const liquido = salario - data.inss
             
             if (response.ok) {
-                resultado.innerHTML = 
 
-                `<table>
-                        <tr>
-                            <th>Salário Bruto</th>
-                            <th>Alíquota aplicada</th>
-                            <th>Desconto INSS</th>
-                            <th>Salário Líquido</th>
+                if (segurado == "mei"){
+
+                    if (modalidade == "complementar"){
+
+                        resultado.innerHTML = 
+                        `<table>
+                            <tr>
+                                <th>Salário Bruto</th>
+                                <th>Alíquota aplicada</th>
+                                <th>Desconto INSS</th>
+                                <th>Salário Líquido</th>
+                                
+                            </tr>
+                            <tr>
+                                <td>R$ ${salario.toFixed(2)}</td>
+                                <td>${data.aliquota}%</td>
+                                <td>${data.inss.toFixed(2)}</td>
+                                <td>R$ ${liquido.toFixed(2)}</td>
+                            </tr>
+                        </table> <br> 
+                        <hr> 
+                        <p>Você já havia contribuído com <strong>5% de R$${(1518).toFixed(2)} (R$${(1518 * 0.05).toFixed(2)})</strong> ao INSS (contribuição obrigatória). <br><br>
+                        Logo, com a complementação de <strong>R$${salario.toFixed(2)}</strong>, 
+                        você deverá contribuir com <strong> R$${(data.inss).toFixed(2)}</strong> ao INSS 
+                        <strong>(20% de R$${salario.toFixed(2)} - R$${(1518 * 0.05).toFixed(2)})</strong>. <br></p>`
                             
-                        </tr>
-                        <tr>
-                            <td>R$ ${salario.toFixed(2)}</td>
-                            <td>${data.aliquota}%</td>
-                            <td>${data.inss.toFixed(2)}</td>
-                            <td>R$ ${liquido.toFixed(2)}</td>
-                        </tr>`
 
-            } else {
-                resultado.innerHTML = `<p style="color:red;">${data.error}</p>`
+                        
+
+                    } else{
+                        resultado.innerHTML = 
+                        
+                        `<table>
+                            <tr>
+                                <th>Salário Bruto</th>
+                                <th>Alíquota aplicada</th>
+                                <th>Desconto INSS</th>
+                                <th>Salário Líquido</th>
+                                
+                            </tr>
+                            <tr>
+                                <td>R$ ${salario.toFixed(2)}</td>
+                                <td>${data.aliquota}%</td>
+                                <td>${data.inss.toFixed(2)}</td>
+                                <td>R$ ${liquido.toFixed(2)}</td>
+                            </tr>`
+                    }
+
+                } else{
+
+                    resultado.innerHTML = 
+    
+                    `<table>
+                            <tr>
+                                <th>Salário Bruto</th>
+                                <th>Alíquota aplicada</th>
+                                <th>Desconto INSS</th>
+                                <th>Salário Líquido</th>
+                                
+                            </tr>
+                            <tr>
+                                <td>R$ ${salario.toFixed(2)}</td>
+                                <td>${data.aliquota}%</td>
+                                <td>${data.inss.toFixed(2)}</td>
+                                <td>R$ ${liquido.toFixed(2)}</td>
+                            </tr>`
+                }
+                
+
+            // } else {
+            //     resultado.innerHTML = `<p style="color:red;">${data.error}</p>`
             }
             
         }
