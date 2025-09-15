@@ -91,9 +91,21 @@ def calc_inss(salário, tipo_segurado, modalidade):
     
         elif modalidade == "complementar":
 
-            salário = 1518.00
-            aliquota = 15
-            inss = salário * 0.15
+            if salário >= 1518.00 and salário <= 8157.41:
+                aliquota = 20
+                inss = salário * 0.20 - 75.90
+
+            elif salário >  8157.41:
+                aliquota = 20
+                inss = 8157.41 * 0.20
+
+            else:
+                aliquota = 20
+                inss = 1518.00 * 0.20
+
+            # salário = 1518.00
+            # aliquota = 15
+            # inss = salário * 0.15
 
 
     elif tipo_segurado == "empresário": 
@@ -155,11 +167,11 @@ def calcular():
     tipo_segurado = data['segurado'].lower()
     modalidade = data['modalidade'].lower()
     
-    resultado, aliquota = calc_inss(salário, tipo_segurado, modalidade)
+    resultado, aliquota,  = calc_inss(salário, tipo_segurado, modalidade)
 
 
     if resultado is not None:
-        return jsonify({"inss": resultado, "aliquota": aliquota})
+        return jsonify({"inss": resultado, "aliquota": aliquota, })
     else:
         return jsonify({"error": "Tipo de segurado inválido!"}), 400
     
