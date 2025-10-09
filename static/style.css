@@ -2,39 +2,40 @@ body{
     font-family: Arial, sans-serif;
     background: linear-gradient(90deg,rgb(8, 8, 72), rgb(21, 50, 129), rgb(22, 85, 210),rgb(61, 147, 232));
     padding: 150px;
-    
-
 }
+
 
 .container{
     background-color: white;
-    padding: 40px;
-    max-width: 400px;
+    padding: 30px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
     margin: auto;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.663);
 }
 
+.content {
+    margin: auto;
+    margin-bottom: 20px;
+}
+
 select{
+
     width: 380px;
     border-radius: 10px;
-    border-color: rgba(0, 0, 0, 0.449) ;
+    border-color: rgba(0, 0, 0, 0.449);
     margin-top: 10px;
     padding: 10px;
     font-size: 16px;
+    margin-left: auto;
 }
 
 #label{
     margin-top: 20px;
 }
 
-/* button{
-    width: 250px;
-    margin-top: 40px;
-    padding: 10px;
-    font-size: 16px;
-    transition: 0.4s;
-} */
 
 input{
     width: 355px;
@@ -43,11 +44,13 @@ input{
     font-size: 16px;
     border-radius: 10px;
     border-color: rgba(0, 0, 0, 0.449);
+    margin-left: auto;
 }
 
 label{
     display: flex;
     align-items: center;
+    margin-left: auto;
 }
 
 button{
@@ -74,7 +77,6 @@ button:hover{
 table{
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
     background-color: white;
 }
 
@@ -88,3 +90,5 @@ th{
     background-color: #214ba0;
     color: white;
 }
+
+
