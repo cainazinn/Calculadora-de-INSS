@@ -41,11 +41,15 @@ def calc_inss(salário, tipo_segurado, modalidade):
             inss = salário * 0.14 - 190.40
     
         elif salário > 8157.41:
-            aliquota = 11.66  
-            inss = 951.62 
+            aliquota = 14  
+            inss = 1631.48 
+        
+        else:
+            aliquota = 7.5
+            inss = 1518.00 * 0.075
         
 
-#Contribuinte individual:
+    #Contribuinte individual:
 
     
     elif tipo_segurado in ["contribuinte individual", "segurado facultativo"]:  
@@ -141,17 +145,12 @@ def calc_inss(salário, tipo_segurado, modalidade):
         
         elif modalidade == "obrigatório":
             
-            if salário >= 1518.00:
-                aliquota = 1.3
-                inss = salário * 0.013
+            aliquota = 1.3
+            inss = salário * 0.013
 
-            else:
-                aliquota = 1.3
-                inss = 1518.00 * 0.013
-
+    return round(inss, 2), aliquota
             
                 
-    return round(inss, 2), aliquota
 
 # resultado = calc_inss(salário)
 # print(f"Você pagará R${resultado} de INSS!")
