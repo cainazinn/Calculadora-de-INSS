@@ -96,23 +96,23 @@ def calc_inss(salário, tipo_segurado, modalidade):
         elif modalidade == "complementar":
 
             if salário >= 1518.00 and salário <= 8157.41:
-                aliquota = 20
+                aliquota = 20  
                 inss = salário * 0.20 - 75.90
 
-            elif salário >  8157.41:
+            elif salário > 8157.41:
                 aliquota = 20
-                inss = 8157.41 * 0.20
+                inss = 8157.41 * 0.20 - 75.90
 
             else:
                 aliquota = 20
-                inss = 1518.00 * 0.20
+                inss = 1518.00 * 0.20 - 75.90
 
             # salário = 1518.00
             # aliquota = 15
             # inss = salário * 0.15
 
 
-    elif tipo_segurado == "empresário": 
+    elif tipo_segurado == "cooperativo": 
 
         if salário >= 1518.00 and salário <= 8157.41:
             aliquota = 20
@@ -126,6 +126,20 @@ def calc_inss(salário, tipo_segurado, modalidade):
             aliquota = 20
             inss = 1518.00 * 0.20
 
+
+    elif  tipo_segurado == "empresario":
+
+        if salário >= 1518.00 and salário <= 8157.41:
+            aliquota = 11
+            inss = salário * 0.11
+
+        elif salário > 8157.41:
+            aliquota = 11
+            inss = 8157.41 * 0.11
+        
+        else:
+            aliquota = 11
+            inss = 1518.00 * 0.11
 
     elif tipo_segurado == "segurado especial":
 
@@ -143,10 +157,9 @@ def calc_inss(salário, tipo_segurado, modalidade):
                 aliquota = 20
                 inss = 1518.00 * 0.20
         
-        elif modalidade == "obrigatório":
-            
-            aliquota = 1.3
-            inss = salário * 0.013
+        elif modalidade == "obrigatório":   
+                aliquota = 1.3
+                inss = salário * 0.013
 
     return round(inss, 2), aliquota
             
